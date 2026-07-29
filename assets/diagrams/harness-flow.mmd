@@ -1,0 +1,14 @@
+%% assets/diagrams/harness-flow.mmd -- 6-step harness execution flow
+flowchart TB
+    IN["User context (JSON)"] --> PF["Pre-Flight: language detection (en/vi)"]
+    PF --> S1["Step 1: gather_requirements"]
+    S1 --> S2["Step 2: evidence_collector"]
+    S2 --> S3["Step 3: core_analysis (jitter/PDV/bufferbloat + AQM + QoS + Wi-Fi + buffer)"]
+    S3 --> S4["Step 4: knowledge_updater (tier-labelled citations + gaps)"]
+    S4 --> S5["Step 5: advisor (risk-disclosed conclusion)"]
+    S5 --> G["Step 6: Quality Gate Review (U1-U6 + G1-G4)"]
+    G -->|fail + auto-fix| S3
+    G -->|fail after 2 retries| LIM["Emit LIMITATION notice"]
+    G -->|pass| OUT["AgentResult / HarnessResult (Markdown + JSON)"]
+    LIM --> OUT
+    S2 -.->|"live fail -> fallback -> knowledge base"| S4

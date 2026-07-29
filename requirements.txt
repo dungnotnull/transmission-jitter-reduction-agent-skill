@@ -1,0 +1,11 @@
+# Core runtime dependencies for the transmission-jitter-reduction tooling.
+requests>=2.31.0
+feedparser>=6.0.10
+python-dateutil>=2.8.2
+
+# Optional: richer crawl backend (used only when --backend=crawl4ai is passed).
+crawl4ai>=0.3.0
+
+# Development / testing.
+pytest>=7.4
+pytest-cov>=4.1

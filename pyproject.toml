@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transmission-jitter-reduction"
+version = "1.2.0"
+description = "Transmission Jitter Reduction Solutions for Gamers â€” evidence-backed Network Jitter & Real-Time Transport Optimization analysis harness."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "transmission-jitter-reduction contributors" }]
+keywords = [
+    "network-jitter",
+    "bufferbloat",
+    "aqm",
+    "fq-codel",
+    "cake",
+    "qos",
+    "dscp",
+    "wifi",
+    "gaming",
+    "real-time-transport",
+    "claude-skill",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Telecommunications Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "feedparser>=6.0.10",
+    "python-dateutil>=2.8.2",
+]
+
+[project.optional-dependencies]
+crawl = ["crawl4ai>=0.3.0"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+]
+
+[project.scripts]
+tjr-jitter = "tjr.jitter_cli:main"
+tjr-knowledge = "tjr.knowledge_cli:main"
+tjr-harness = "tjr.cli:main"
+tjr-agent = "tjr.agent_cli:main"
+
+[project.urls]
+Homepage = "https://github.com/transmission-jitter-reduction/transmission-jitter-reduction"
+Issues = "https://github.com/transmission-jitter-reduction/transmission-jitter-reduction/issues"
+
+[tool.setuptools]
+packages = ["tjr"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "tools"]
+python_files = ["test_*.py"]
+addopts = "-ra"

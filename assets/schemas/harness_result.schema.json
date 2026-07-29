@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://transmission-jitter-reduction/schemas/harness_result.schema.json",
+  "title": "HarnessResult",
+  "description": "Authoritative deterministic result from tjr.harness.Harness.",
+  "type": "object",
+  "required": ["language", "verdict", "gate_results", "gate_summary", "degradation_level", "limitations", "report_markdown"],
+  "additionalProperties": false,
+  "properties": {
+    "language": { "type": "string", "enum": ["en", "vi"] },
+    "verdict": { "type": "string", "enum": ["Low Jitter", "Conditional (ISP-limited)", "High Jitter", "Inconclusive"] },
+    "jitter_report": { "type": "object" },
+    "bufferbloat": { "type": "object" },
+    "aqm": { "type": "object" },
+    "qos": { "type": "object" },
+    "wifi": { "type": "object" },
+    "jitter_buffer": { "type": "object" },
+    "scenarios": { "type": "array" },
+    "evidence": { "type": "array" },
+    "knowledge_citations": { "type": "array" },
+    "gate_results": { "type": "array", "items": { "type": "object" } },
+    "gate_summary": { "type": "object" },
+    "degradation_level": { "type": "integer", "minimum": 0, "maximum": 4 },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "report_markdown": { "type": "string" }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://transmission-jitter-reduction/schemas/tool.schema.json",
+  "title": "Tool",
+  "description": "Declaration shape for a registered tool (tjr.tools.Tool).",
+  "type": "object",
+  "required": ["name", "description", "input_schema", "output_schema"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "input_schema": { "type": "object" },
+    "output_schema": { "type": "object" },
+    "arg_names": { "type": "array", "items": { "type": "string" } }
+  }
+}

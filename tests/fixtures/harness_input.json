@@ -1,0 +1,33 @@
+{
+  "query": "Phan tich giam jitter cho game Valorant khi dung WiFi",
+  "rtt_samples": [14.2, 13.9, 15.1, 14.6, 22.8, 14.1, 13.8, 14.3, 14.0, 18.9, 14.2, 13.9],
+  "idle_latency_ms": 14.0,
+  "latency_under_load_ms": 78.0,
+  "upload_mbps": 20.0,
+  "download_mbps": 100.0,
+  "flow_count": 4,
+  "link_type": "household",
+  "game": "valorant",
+  "traffic_class": "game",
+  "tickrate_hz": 64,
+  "wifi_band": "5",
+  "wifi_width_mhz": 80,
+  "wifi_scans": [
+    {"bssid": "aa:bb:cc:dd:ee:01", "ssid": "neighbour-1", "channel": 36, "band": "5", "rssi_dbm": -48, "utilisation_pct": 75},
+    {"bssid": "aa:bb:cc:dd:ee:02", "ssid": "neighbour-2", "channel": 40, "band": "5", "rssi_dbm": -62, "utilisation_pct": 40},
+    {"bssid": "aa:bb:cc:dd:ee:03", "ssid": "neighbour-3", "channel": 149, "band": "5", "rssi_dbm": -82, "utilisation_pct": 5}
+  ],
+  "isp_limited": false,
+  "evidence": [
+    {"source": "DSLReports bufferbloat test", "tier": 3, "url": "https://www.dslreports.com/speedtest", "date": "2026-07-14"},
+    {"source": "OpenWrt SQM / AQM wiki", "tier": 3, "url": "https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm", "date": "2026-07-14"}
+  ],
+  "knowledge_citations": [
+    {"title": "RFC 8289: Controlled Delay Active Queue Management (CoDel)", "venue": "IETF", "year": 2018, "tier": 1, "doi_or_url": "https://www.rfc-editor.org/rfc/rfc8289", "key_finding": "CoDel controls queue delay without per-flow state."},
+    {"title": "RFC 8290: The Flow Queue CoDel Packet Scheduler (FQ-CoDel)", "venue": "IETF", "year": 2018, "tier": 1, "doi_or_url": "https://www.rfc-editor.org/rfc/rfc8290", "key_finding": "FQ-CoDel pairs flow scheduling with CoDel for low latency under load."},
+    {"title": "RFC 8033: Proportional Integral Controller Enhanced (PIE)", "venue": "IETF", "year": 2017, "tier": 1, "doi_or_url": "https://www.rfc-editor.org/rfc/rfc8033", "key_finding": "PIE AQM stabilises queueing delay with low computation."}
+  ],
+  "audience": "gamer",
+  "scope": "home WiFi jitter reduction for Valorant",
+  "timeframe": "current"
+}

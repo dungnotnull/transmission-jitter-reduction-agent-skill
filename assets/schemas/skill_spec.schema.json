@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://transmission-jitter-reduction/schemas/skill_spec.schema.json",
+  "title": "SkillSpec",
+  "description": "Declaration shape for a registered skill (tjr.skills.SkillSpec).",
+  "type": "object",
+  "required": ["name", "description", "inputs_schema", "outputs_schema"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "step": { "type": "integer", "minimum": 0 },
+    "tools": { "type": "array", "items": { "type": "string" } },
+    "quality_gates": { "type": "array", "items": { "type": "string" } },
+    "inputs_schema": { "type": "object" },
+    "outputs_schema": { "type": "object" }
+  }
+}

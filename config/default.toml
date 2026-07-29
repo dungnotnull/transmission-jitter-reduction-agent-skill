@@ -1,0 +1,52 @@
+# config/default.toml -- baseline configuration for transmission-jitter-reduction.
+#
+# This file is the middle layer of the configuration hierarchy:
+#   dataclass defaults  <  this file  <  TJR_* environment variables  <  overrides
+# Every value here can be overridden at runtime with the matching TJR_* variable
+# (see tjr/config.py). All values are validated on load; invalid values raise
+# ConfigError before the toolkit starts, so misconfiguration never produces
+# silent, half-broken runs.
+
+domain = "Network Jitter & Real-Time Transport Optimization"
+version = "1.2.0"
+environment = "production"
+language_default = "en"
+
+[features]
+# Agent framework subsystems. Disable any of these for a leaner runtime
+# (e.g. turn off the LLM-bound chain-of-thought router in a headless CI run).
+agent_framework = true
+chain_of_thought_router = true
+structured_logging = true
+token_accounting = true
+hooks_event_bus = true
+tools_registry = true
+knowledge_crawl = true
+bilingual_output = true
+graceful_degradation = true
+auto_fix_gates = true
+
+[llm]
+# LLM parameters. The deterministic core (tjr.jitter_analysis / tjr.harness) runs
+# without an LLM; these are honoured only when an LLM is in the loop.
+model = "claude-sonnet-4.5"
+temperature = 0.2
+max_output_tokens = 4096
+context_window_tokens = 200000
+request_timeout_s = 60
+max_retries = 3
+base_backoff_s = 2.0
+session_token_budget = 250000
+
+[crawl]
+# Overrides applied to tjr.knowledge_updater.KNOWLEDGE_CONFIG at runtime.
+max_results_per_source = 10
+max_new_entries_per_run = 20
+request_timeout_s = 30
+max_retries = 3
+base_backoff_s = 2.0
+
+[logging]
+level = "INFO"        # DEBUG | INFO | WARNING | ERROR | CRITICAL
+format = "json"       # json | text
+output = "stderr"     # stderr | stdout | <file path>

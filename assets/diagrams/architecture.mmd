@@ -1,0 +1,41 @@
+%% assets/diagrams/architecture.mmd -- agent framework architecture
+%% Render with any Mermaid renderer (e.g. GitHub, mermaid-cli).
+flowchart TB
+    subgraph Config["Configuration & Observability"]
+        CFG["tjr.config (Settings)"]
+        LOG["tjr.logging_utils (structured JSON)"]
+        CTX["tjr.context (context window + token budget)"]
+    end
+    subgraph Agent["Agent Framework"]
+        ORC["OrchestratorAgent"]
+        ROUT["RouterAgent / ChainOfThoughtRouter"]
+        SUB1["SubAgent: gather_requirements"]
+        SUB2["SubAgent: evidence_collector"]
+        SUB3["SubAgent: core_analysis"]
+        SUB4["SubAgent: knowledge_updater"]
+        SUB5["SubAgent: advisor"]
+        HOOKS["tjr.hooks (EventBus)"]
+    end
+    subgraph Registry["Registry"]
+        SKILLS["SkillRegistry (JSON-schema contracts)"]
+        TOOLS["ToolRegistry (JSON-schema tools)"]
+    end
+    subgraph Core["Deterministic Core (single source of truth)"]
+        H["tjr.harness.Harness"]
+        JA["tjr.jitter_analysis (RFC-graded)"]
+        QG["tjr.quality_gates (U1-U6 + G1-G4)"]
+        KU["tjr.knowledge_updater (crawl)"]
+    end
+    CFG --> ORC
+    ORC --> ROUT
+    ROUT -->|plan+trace| ORC
+    ORC --> SUB1 & SUB2 & SUB3 & SUB4 & SUB5
+    SUB1 & SUB2 & SUB3 & SUB4 & SUB5 --> SKILLS
+    SUB3 & SUB5 --> TOOLS
+    ORC --> HOOKS
+    ORC -->|delegate authoritative result+gates| H
+    H --> JA
+    H --> QG
+    KU --> SKILLS
+    LOG -.-> HOOKS
+    CTX -.-> ORC

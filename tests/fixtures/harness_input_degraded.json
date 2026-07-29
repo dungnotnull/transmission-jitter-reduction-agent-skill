@@ -1,0 +1,8 @@
+{
+  "query": "analyze jitter",
+  "rtt_samples": [],
+  "idle_latency_ms": null,
+  "latency_under_load_ms": null,
+  "evidence": [],
+  "knowledge_citations": []
+}
